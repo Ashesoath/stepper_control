@@ -50,11 +50,11 @@ import rospy
 from std_msgs.msg import String 
 
 rospy.init_node('Stepper_Publisher')	# Initializing the node
-pub=rospy.Publisher('rotation', String, queue_size=10)
+pub = rospy.Publisher('rotation', String, queue_size=10)
 
 while not rospy.is_shutdown():		# The function will return True if the node is ready to be shut down and False otherwise
 	# This node publishes the input data on the topic "rotation"
-	rate=rospy.Rate(1)
+	rate = rospy.Rate(1)
 	data = raw_input('Enter clockwise or counterclockwise: ')
 	if data == "clockwise" || "counterclockwise":
 		pub.publish(data)
