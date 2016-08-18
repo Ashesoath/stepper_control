@@ -56,6 +56,6 @@ while not rospy.is_shutdown():		# The function will return True if the node is r
 	# This node publishes the input data on the topic "rotation"
 	rate = rospy.Rate(1)
 	data = raw_input('Enter clockwise or counterclockwise: ')
-	if data == "clockwise" or "counterclockwise":
+	if data in ("clockwise","counterclockwise"):
 		pub.publish(data)
 		rate.sleep()
