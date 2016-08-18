@@ -62,7 +62,7 @@ for pin in steppins:
 seq = [[1,0,0,1],[1,0,0,0],[1,1,0,0],[0,1,0,0],[0,1,1,0],[0,0,1,0],[0,0,1,1],[0,0,0,1]]
 step_count = len(seq)
 
-def sequence():
+def sequence(step_counter):
 	for pin in range(0,4):
 		# Get the GPIO
 		xpin=steppins[pin]
@@ -71,10 +71,11 @@ def sequence():
 		else:
 			GPIO.output(xpin,False)
 
-def steps():
+def steps(direction):
 	step = 0
+	step_counter = 0
 	while step < 4096:
-		sequence()
+		sequence(step_counter)
 		step_counter += direction
 		if step_counter >= step_count:
 			step_counter = 0
@@ -89,8 +90,7 @@ def callback(msg):
 		direction = 1
 	else:
 		direction = -1
-	step_counter = 0
-	steps()
+	steps(direction)
 
 rospy.init_node('Stepper_28BYJ_Sub')
 sub = rospy.Subscriber('rotation', String, callback)
