@@ -32,8 +32,8 @@
 #  INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN 
 #  CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) 
 #  ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE 
-#  POSSIBILITY OF SUCH DAMAGE.*/
-#****************************************************************************/
+#  POSSIBILITY OF SUCH DAMAGE.
+#****************************************************************************
 import rospy
 # In this case, we are going to use a String, defined in the ROS standart message pakage.
 # Sinse we are using a message from another package, we have to tell the ROS build system 
