@@ -62,6 +62,15 @@ for pin in steppins:
 seq = [[1,0,0,1],[1,0,0,0],[1,1,0,0],[0,1,0,0],[0,1,1,0],[0,0,1,0],[0,0,1,1],[0,0,0,1]]
 step_count = len(seq)
 
+def sequence():
+	for pin in range(0,4):
+		# Get the GPIO
+		xpin=steppins[pin]
+		if seq[step_counter][pin] != 0:
+			GPIO.output(xpin,True)
+		else:
+			GPIO.output(xpin,False)
+
 def callback(msg):
 	print msg.data
 	if msg.data == "clockwise":
@@ -71,16 +80,8 @@ def callback(msg):
 	step_counter = 0
 	step = 0
 	while step < 4096:
-		for pin in range(0,4):
-			# Get the GPIO
-			xpin=steppins[pin]
-			if(seq[step_counter][pin] != 0):
-				GPIO.output(xpin,True)
-			else:
-				GPIO.output(xpin,False)
-
+		sequence()
 		step_counter += direction
-
 		if(step_counter >= step_count):
 			step_counter = 0
 		if (step_counter < 0):
