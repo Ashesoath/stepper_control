@@ -42,11 +42,9 @@
 #  POSSIBILITY OF SUCH DAMAGE.*/
 #****************************************************************************/
 import rospy
-# In this case, we are going to use a String, 
-# defined in the ROS standart message pakage.
-# Sinse we are using a message from another package, 
-# we have to tell the ROS build system about this by adding
-# a dependency to our package.xml
+# In this case, we are going to use a String, defined in the ROS standart message pakage.
+# Sinse we are using a message from another package, we have to tell the ROS build system 
+# about this by adding a dependency to our package.xml
 from std_msgs.msg import String 
 
 rospy.init_node('Stepper_Publisher')	# Initializing the node
