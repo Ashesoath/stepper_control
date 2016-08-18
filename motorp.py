@@ -6,13 +6,6 @@
 #  Project: How to manage a stepper motor via ROS?
 #  Description:  The Publisher Node. Sending direction data for rotation. The user enters the data via a query  
 #  -------------------------------------------------------------------------
-#  Author: 		Vladyslav Tkachenko
-#  Revision: 	1.0  
-#  Date: 		2016/08/17 14:56:09
-#  -------------------------------------------------------------------------
-#  Revision History:
-#  2016/08/01 -rs:   Initial Implementation
-#  -------------------------------------------------------------------------
 #  All rights reserved.
 #
 #  Redistribution and use in source and binary forms, with or without 
