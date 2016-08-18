@@ -6,13 +6,6 @@
 #  Project: How to manage a stepper motor via ROS?
 #  Description:  The Subscriber Node for system with Step motor 28BYJ-48. Receive the data. Starting the motor in the specified direction.
 #  -------------------------------------------------------------------------
-#  Author: 		Vladyslav Tkachenko
-#  Revision: 	1.0  
-#  Date: 		2016/08/17 14:59:59
-#  -------------------------------------------------------------------------
-#  Revision History:
-#  2016/08/01 -rs:   Initial Implementation
-#  -------------------------------------------------------------------------
 #  All rights reserved.
 #  Redistribution and use in source and binary forms, with or without 
 #  modification, are permitted provided that the following conditions are met:
@@ -38,12 +31,12 @@
 #  INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN 
 #  CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) 
 #  ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE 
-#  POSSIBILITY OF SUCH DAMAGE.*/
-# ****************************************************************************/
+#  POSSIBILITY OF SUCH DAMAGE.
+# ****************************************************************************
 # I want to express my gratitude to author Matt from web-site http://www.raspberrypi-spy.co.uk/author/matt/.
 # Lines of code have been taken from this site, which helped in the implementation of the system.
 # Thank you for a wonderful code, I recommend to visit his page on the web-site http://www.raspberrypi-spy.co.uk/.
-# ****************************************************************************/
+# ****************************************************************************
 import time
 import os
 import sys
