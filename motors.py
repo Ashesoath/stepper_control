@@ -7,13 +7,6 @@
 #
 #  Description:  The Subscriber Node for system with 12V Stepper motor. Receive the data. Starting the motor in the specified direction.
 #  -------------------------------------------------------------------------
-#  Author: 		Vladyslav Tkachenko
-#  Revision: 	1.0  
-#  Date: 		2016/08/17 14:59:10
-#  -------------------------------------------------------------------------
-#  Revision History:
-#  2016/08/01 -rs:   Initial Implementation
-#  -------------------------------------------------------------------------
 #  All rights reserved.
 #  Redistribution and use in source and binary forms, with or without 
 #  modification, are permitted provided that the following conditions are met:
