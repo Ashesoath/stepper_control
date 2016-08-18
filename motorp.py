@@ -4,23 +4,15 @@
 #  www.systec-electronic.com
 #
 #  Project: How to manage a stepper motor via ROS?
-#
 #  Description:  The Publisher Node. Sending direction data for rotation. The user enters the data via a query  
-#
 #  -------------------------------------------------------------------------
-#
 #  Author: 		Vladyslav Tkachenko
 #  Revision: 	1.0  
 #  Date: 		2016/08/17 14:56:09
-#
 #  -------------------------------------------------------------------------
-#
 #  Revision History:
-#
 #  2016/08/01 -rs:   Initial Implementation
-#
 #  -------------------------------------------------------------------------
-#  
 #  All rights reserved.
 #
 #  Redistribution and use in source and binary forms, with or without 
@@ -49,26 +41,21 @@
 #  ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE 
 #  POSSIBILITY OF SUCH DAMAGE.*/
 #****************************************************************************/
-
 import rospy
 # In this case, we are going to use a String, 
-#defined in the ROS standart message pakage.
+# defined in the ROS standart message pakage.
 # Sinse we are using a message from another package, 
-#we have to tell the ROS build system about this by adding
-#a dependency to our package.xml
+# we have to tell the ROS build system about this by adding
+# a dependency to our package.xml
 from std_msgs.msg import String 
 
 rospy.init_node('Stepper_Publisher')	# Initializing the node
 pub=rospy.Publisher('rotation', String, queue_size=10)
 
-while not rospy.is_shutdown():		#The function will return True if the node is ready to be shut down and False otherwise
+while not rospy.is_shutdown():		# The function will return True if the node is ready to be shut down and False otherwise
 	# This node publishes the input data on the topic "rotation"
 	rate=rospy.Rate(1)
 	data = raw_input('Enter clockwise or counterclockwise: ')
-	if (data == "clockwise"):
+	if data == "clockwise" || "counterclockwise":
 		pub.publish(data)
 		rate.sleep()
-	elif (data == "counterclockwise"):
-		pub.publish(data)
-                rate.sleep()
-	
