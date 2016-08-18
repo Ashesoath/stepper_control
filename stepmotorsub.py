@@ -66,48 +66,28 @@ def callback(msg):
 	print msg.data
 	if msg.data == "clockwise":
 		direction = 1
-		step_counter = 0
-		step = 0
-		while step < 4096:
-			for pin in range(0,4):
-				# Get the GPIO
-				xpin=steppins[pin]
-				if(seq[step_counter][pin] != 0):
-					GPIO.output(xpin,True)
-				else:
-					GPIO.output(xpin,False)
+	else:
+		direction = -1
+	step_counter = 0
+	step = 0
+	while step < 4096:
+		for pin in range(0,4):
+			# Get the GPIO
+			xpin=steppins[pin]
+			if(seq[step_counter][pin] != 0):
+				GPIO.output(xpin,True)
+			else:
+				GPIO.output(xpin,False)
 
-			step_counter += direction
+		step_counter += direction
 
-			if(step_counter >= step_count):
-				step_counter = 0
-			if (step_counter < 0):
-				step_counter = step_count + direction
-			time.sleep(0.001)
-			step += 1
-
-	elif(msg.data == "counterclockwise"):
-                Direction = -1
-                StepCounter = 0
-                Step = 0
-                while Step < 4096:
-                        for pin in range(0,4):
-                                xpin=steppins[pin]
-                                if(Seq[StepCounter][pin] != 0):
-                                        GPIO.output(xpin,True)
-                                else:
-                                        GPIO.output(xpin,False)
-
-                        StepCounter += Direction
-
-                        if(StepCounter >= StepCount):
-                                StepCounter = 0
-                        if (StepCounter < 0):
-                                StepCounter = StepCount + Direction
-                        time.sleep(0.001)
-                        Step += 1
+		if(step_counter >= step_count):
+			step_counter = 0
+		if (step_counter < 0):
+			step_counter = step_count + direction
+		time.sleep(0.001)
+		step += 1
 
 rospy.init_node('Stepper_28BYJ_Sub')
 sub = rospy.Subscriber('rotation', String, callback)
-
 rospy.spin()
