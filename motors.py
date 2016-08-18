@@ -6,23 +6,15 @@
 #  Project: How to manage a stepper motor via ROS?
 #
 #  Description:  The Subscriber Node for system with 12V Stepper motor. Receive the data. Starting the motor in the specified direction.
-#
 #  -------------------------------------------------------------------------
-#
 #  Author: 		Vladyslav Tkachenko
 #  Revision: 	1.0  
 #  Date: 		2016/08/17 14:59:10
-#
 #  -------------------------------------------------------------------------
-#
 #  Revision History:
-#
 #  2016/08/01 -rs:   Initial Implementation
-#
 #  -------------------------------------------------------------------------
-#  
 #  All rights reserved.
-#
 #  Redistribution and use in source and binary forms, with or without 
 #  modification, are permitted provided that the following conditions are met:
 #
@@ -49,12 +41,11 @@
 #  ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE 
 #  POSSIBILITY OF SUCH DAMAGE.*/
 #****************************************************************************/
-
+import time
+import os
 import rospy
 from std_msgs.msg import String
 import RPi.GPIO as GPIO
-import time
-import os
 
 GPIO.setwarnings(False)
 GPIO.setmode(GPIO.BOARD)
@@ -66,28 +57,20 @@ p = GPIO.PWM(16,500)
 # The function is the "callback" that handles the messages as they come in: 
 def callback(msg):
 	print msg.data
-	if(msg.data == "clockwise"):
+	if msg.data == "clockwise":
 		# Send to the direction pin the True value
 		GPIO.output(18, True)
-		steps=0
-		# 1000 is the 2.5 rotation for this stepper(12 V)
-                while steps<1000:
-                        p.start(1)
-                        steps+=1
-                        time.sleep(0.01)
-                p.stop()
-
-	elif(msg.data == "counterclockwise"):
+	else:
 		# Send to the direction pin the False value
 		GPIO.output(18, False)
-		steps=0
-                while steps<1000:
-                	p.start(1)
-			steps+=1
-                	time.sleep(0.01)
-	        p.stop()
-
+	steps = 0
+	# 1000 is the 2.5 rotation for this stepper(12 V)
+	while steps < 1000:
+		p.start(1)
+		steps += 1
+		time.sleep(0.01)
+	p.stop()
+	
 rospy.init_node('Stepper_Subscriber')
 sub = rospy.Subscriber('rotation', String, callback)
-
 rospy.spin()
