@@ -4,25 +4,16 @@
 #  www.systec-electronic.com
 #
 #  Project: How to manage a stepper motor via ROS?
-#
 #  Description:  The Subscriber Node for system with Step motor 28BYJ-48. Receive the data. Starting the motor in the specified direction.
-#
 #  -------------------------------------------------------------------------
-#
 #  Author: 		Vladyslav Tkachenko
 #  Revision: 	1.0  
 #  Date: 		2016/08/17 14:59:59
-#
 #  -------------------------------------------------------------------------
-#
 #  Revision History:
-#
 #  2016/08/01 -rs:   Initial Implementation
-#
 #  -------------------------------------------------------------------------
-#  
 #  All rights reserved.
-#
 #  Redistribution and use in source and binary forms, with or without 
 #  modification, are permitted provided that the following conditions are met:
 #
@@ -53,15 +44,12 @@
 # Lines of code have been taken from this site, which helped in the implementation of the system.
 # Thank you for a wonderful code, I recommend to visit his page on the web-site http://www.raspberrypi-spy.co.uk/.
 # ****************************************************************************/
-
-
-# Import libraries
-import rospy
-from std_msgs.msg import String
-import RPi.GPIO as GPIO
 import time
 import os
 import sys
+import rospy
+from std_msgs.msg import String
+import RPi.GPIO as GPIO
 
 GPIO.setwarnings(False)
 GPIO.setmode(GPIO.BOARD)
@@ -70,35 +58,33 @@ steppins = [12,16,18,22]	# Define GPIO signals
 for pin in steppins:
 	GPIO.setup(pin, GPIO.OUT)
 	GPIO.output(pin, False)
-
 # Define advanced sequence
-Seq=[[1,0,0,1],[1,0,0,0],[1,1,0,0],[0,1,0,0],[0,1,1,0],[0,0,1,0],[0,0,1,1],[0,0,0,1]]
-StepCount = len(Seq)
-
+seq = [[1,0,0,1],[1,0,0,0],[1,1,0,0],[0,1,0,0],[0,1,1,0],[0,0,1,0],[0,0,1,1],[0,0,0,1]]
+step_count = len(seq)
 
 def callback(msg):
 	print msg.data
-	if(msg.data == "clockwise"):
-		Direction = 1
-		StepCounter = 0
-		Step = 0
-		while Step < 4096:
+	if msg.data == "clockwise":
+		direction = 1
+		step_counter = 0
+		step = 0
+		while step < 4096:
 			for pin in range(0,4):
 				# Get the GPIO
 				xpin=steppins[pin]
-				if(Seq[StepCounter][pin] != 0):
+				if(seq[step_counter][pin] != 0):
 					GPIO.output(xpin,True)
 				else:
 					GPIO.output(xpin,False)
 
-			StepCounter += Direction
+			step_counter += direction
 
-			if(StepCounter >= StepCount):
-				StepCounter = 0
-			if (StepCounter < 0):
-				StepCounter = StepCount + Direction
+			if(step_counter >= step_count):
+				step_counter = 0
+			if (step_counter < 0):
+				step_counter = step_count + direction
 			time.sleep(0.001)
-			Step += 1
+			step += 1
 
 	elif(msg.data == "counterclockwise"):
                 Direction = -1
